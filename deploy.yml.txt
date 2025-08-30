@@ -1,0 +1,24 @@
+name Deploy to GitHub Pages
+
+on
+  push
+    branches
+      - main  # atau ganti dengan nama branch utama Anda
+
+jobs
+  deploy
+    runs-on ubuntu-latest
+    steps
+      - name Checkout repository
+        uses actionscheckout@v3
+
+      - name Setup Pages
+        uses actionsconfigure-pages@v3
+
+      - name Upload artifact
+        uses actionsupload-pages-artifact@v2
+        with
+          path .  # folder root tempat index.html berada
+
+      - name Deploy to GitHub Pages
+        uses actionsdeploy-pages@v2
